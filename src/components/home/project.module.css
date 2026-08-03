@@ -1,0 +1,218 @@
+.projects_container {
+  max-width: 1260px;
+  margin: 0 auto;
+}
+.projects_container {
+  padding: 40px 20px;
+}
+.projects_heading {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0b0f16;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+  margin: 0 0 22px;
+}
+.projects_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.project_card {
+  display: block;
+  text-decoration: none;
+  border-radius: 20px;
+  overflow: visible;
+  transition: transform 0.35s ease;
+}
+.project_image_wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #0b0f16;
+  cursor: auto;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+.project_info {
+  padding: 16px 8px 0;
+  cursor: auto;
+}
+.project_image {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project_image_overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 7, 11, 0) 60%,
+    rgba(5, 7, 11, 0.18) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.project_card:hover .project_image_wrapper {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 34px rgba(15, 23, 42, 0.18);
+}
+.project_card:hover .project_image {
+  transform: scale(1.06);
+}
+.project_card:hover .project_image_overlay {
+  opacity: 1;
+}
+.project_title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b0f16;
+  margin: 0 0 4px;
+  transition: color 0.3s ease;
+}
+.project_card:hover .project_title {
+  color: #1c86db;
+}
+.project_subtitle {
+  font-size: 15px;
+  line-height: 22px;
+  color: #4F525A;
+  margin: 0;
+}
+.project_card:focus-visible .project_image_wrapper {
+  outline: 2px solid #2e9bf0;
+  outline-offset: 3px;
+}
+.project_card_wide .project_image_wrapper {
+  aspect-ratio: 12 / 8;
+}
+.projects_load_more_row {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.projects_load_more_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  border: 1.5px solid #e2e6ec;
+  background-color: #ffffff;
+  color: #0b0f16;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+.projects_load_more_btn:hover:not(:disabled) {
+  border-color: #2e9bf0;
+  background-color: #f2f9ff;
+  box-shadow: 0 8px 20px rgba(46, 155, 240, 0.16);
+  transform: translateY(-2px);
+}
+.projects_load_more_btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+.projects_load_more_icon {
+  transition: transform 0.4s ease;
+}
+.projects_load_more_btn:hover:not(:disabled) .projects_load_more_icon {
+  transform: rotate(180deg);
+}
+.projects_load_more_icon_spinning {
+  animation: projects_spin 0.9s linear infinite;
+}
+.projects_container :global(.sub-heading) {
+  margin-bottom: 40px;
+}
+.pr_head{
+  max-width: 300px;
+}
+.process_icon_image {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+@keyframes projects_spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .projects_container {
+    padding: 50px 40px;
+  }
+  .projects_heading {
+    font-size: 23px;
+    margin-bottom: 26px;
+  }
+  .projects_grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+  .project_card_wide {
+    grid-column: span 2;
+  }
+  .project_subtitle {
+    font-size: 16px;
+  }
+  .project_card {
+    border-radius: 30px;
+  }
+  .project_image_wrapper {
+    border-radius: 30px;
+    aspect-ratio: 3 / 1.7;
+  }
+  .project_card_wide .project_image_wrapper {
+    aspect-ratio: 12 / 4.5;
+  }
+  .project_title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .projects_container {
+    padding: 50px 64px 60px;
+  }
+  .projects_heading {
+    font-size: 24px;
+    margin-bottom: 28px;
+  }
+  .projects_grid {
+    gap: 28px;
+  }
+  .project_info {
+    padding-top: 16px;
+  }
+  .project_title {
+    font-size: 22px;
+  }
+  .project_card {
+    border-radius: 40px;
+  }
+  .project_image_wrapper {
+    border-radius: 40px;
+  }
+}
+@media screen and (min-width: 1420px) {
+  .projects_container {
+    padding: 50px 0px 70px;
+  }
+}
