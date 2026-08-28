@@ -1,3 +1,4 @@
+import posthog from "@/lib/posthog";
 import Button from "../button/Button";
 import { toast } from "react-toastify";
 import { FormType } from "@/types/form";
@@ -90,6 +91,9 @@ export default function ConsultationModal({ isOpen, onClose }: ModalProps) {
       if (!response.ok) return toast.error(data.message);
 
       onClose();
+      posthog.capture("consultation_booking_completed", {
+        ...cleanedNewData
+      });
       toast.success(data.message);
       setFormData(consultationFormInitialData);
     } catch (error) {
@@ -104,7 +108,7 @@ export default function ConsultationModal({ isOpen, onClose }: ModalProps) {
 
       const res = await response.json();
       // setIsLoading(false);
-      if (!response.ok) return toast.error(res.message);
+      if (!response.ok) return;
       const serviceNames = res.data.map((service: any) => service.tab_label);
       setServices(serviceNames);
       setSelectedServices([serviceNames[0]])

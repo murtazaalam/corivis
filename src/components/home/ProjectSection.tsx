@@ -25,7 +25,8 @@ export default function ProjectSection() {
       const res = await response.json();
 
       setIsLoading(false);
-      if (!response.ok) return toast.error(res.message);
+      // if (!response.ok) return toast.error(res.message);
+      if (!response.ok) return;
 
       setProjects(res.data);
       setTotalCount(res.totalCount);

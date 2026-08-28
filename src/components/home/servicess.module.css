@@ -360,7 +360,7 @@
   .tabs_sticky { padding: 20px 0 0; }
   .tab { padding: 11px 20px; font-size: 13.5px; }
   .shell { border-radius: 30px; }
-  .panel { min-height: 36vh; }
+  .panel { min-height: 44vh; }
   .card {
     border-radius: 24px;
     padding: 40px;
@@ -376,7 +376,7 @@
   .caption { font-size: 22px; }
 }
 @media screen and (min-width: 820px) {
-  .panel { min-height: 30vh; }
+  .panel { min-height: 38vh; }
 }
 
 @media screen and (min-width: 1024px) {
@@ -390,11 +390,11 @@
   .img_wrap { width: 280px; height: 240px; border-radius: 28px; }
   .ring { border-radius: 32px; }
   .caption { font-size: 26px; }
-  .panel { min-height: 26vh; }
+  .panel { min-height: 33vh; }
 }
 
 @media screen and (min-width: 1280px) {
-  .panel { min-height: 46vh; }
+  .panel { min-height: 56vh; }
 }
 @media screen and (min-width: 1420px) {
   .container { padding: 50px 0; }

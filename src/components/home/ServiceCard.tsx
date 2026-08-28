@@ -1,4 +1,5 @@
 import Image from "next/image";
+import posthog from "@/lib/posthog";
 import { useRef, useState } from "react";
 import styles from "./servicess.module.css";
 import BrochureModal from "../modal/BrochureModal";
@@ -58,6 +59,15 @@ export default function ServiceCard({
     }
   });
 
+  const handleServiceCLick = (item: any) => {
+    setOpen(true)
+    setDownloadUrl(item.brochure_href)
+    posthog.capture("service_clicked", {
+      service_id: item._id,
+      service_name: item.title,
+    });
+  }
+
   return (
     <div
       ref={(el) => {
@@ -98,11 +108,8 @@ export default function ServiceCard({
 
             <button
               type="button"
-              onClick={() => {
-                setOpen(true)
-                setDownloadUrl(item.brochure_href)
-              }}
               className={`${styles.btn}`}
+              onClick={() => handleServiceCLick(item)}
               style={{
                 "--btn-color": item.btn_color || "#1976d2",
               } as React.CSSProperties}

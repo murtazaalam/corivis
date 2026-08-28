@@ -1,3 +1,4 @@
+import posthog from "@/lib/posthog";
 import Button from "../button/Button";
 import { toast } from "react-toastify";
 import { FormType } from "@/types/form";
@@ -68,6 +69,12 @@ export default function ContactModal({ isOpen, onClose }: ConnectModalProps) {
       if (!response.ok) return toast.error(data.message);
 
       onClose();
+      console.log("PostHog:", posthog);
+      console.log("Distinct ID:", posthog.get_distinct_id());
+
+      posthog.capture("contact_us_completed", {
+        ...newFormData
+      });
       toast.success(data.message);
       setFormData(contactFormInitialData);
     } catch (error) {

@@ -1,3 +1,4 @@
+import posthog from "@/lib/posthog";
 import Button from "../button/Button";
 import { toast } from "react-toastify";
 import { FormType } from "@/types/form";
@@ -71,6 +72,15 @@ export default function BrochureModal({
       if (!response.ok) return toast.error(data.message);
 
       onClose();
+      
+      console.log("PostHog:", posthog);
+      console.log("Distinct ID:", posthog.get_distinct_id());
+
+      posthog.capture("download_completed", {
+        user_name: newFormData.name,
+        user_email: newFormData.email,
+        brochure_title: title,
+      });
 
       window.open(brochure, "_blank");
       toast.success(data.message);

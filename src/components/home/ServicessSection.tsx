@@ -68,7 +68,8 @@ export default function ServicessSection() {
 
       const res = await response.json();
       setIsLoading(false);
-      if (!response.ok) return toast.error(res.message);
+      // if (!response.ok) return toast.error(res.message);
+      if (!response.ok) return toast.error("Network Error");
 
       setServices(res.data);
       setTotalCount(res.totalCount);

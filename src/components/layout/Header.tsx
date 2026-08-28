@@ -20,6 +20,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openContact, setOpenContact] = useState(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [scrolledDesk, setScrolledDesk] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -40,9 +41,23 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleDesktopScroll = () => {
+      setScrolledDesk(window.scrollY > 80);
+    };
+
+    window.addEventListener("scroll", handleDesktopScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleDesktopScroll);
+    };
+  }, []);
+
   return (
     <header className={styles.header}>
-      <div className={styles.desktop_bar}>
+      <div
+        className={`${styles.desktop_bar} ${scrolledDesk ? styles.scrolled_desk : ""}`}
+      >
         <Link href="/" className={styles.logo_wrapper}>
           <Image
             fill
@@ -54,16 +69,16 @@ export default function Header() {
         </Link>
 
         <nav className={styles.desktop_nav} aria-label="Primary">
-          {navLink.map((link) =>
-          (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.nav_link}
-            >
-              {link.label}
-            </Link>
-          )
+          {navLink.map(
+            (link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={styles.nav_link}
+              >
+                {link.label}
+              </Link>
+            ),
             // link.href === "#contact" ? (
             //   <button
             //     key={link.href}
@@ -92,7 +107,9 @@ export default function Header() {
         />
       </div>
 
-      <div className={`${styles.mobile_bar} ${scrolled ? styles.scrolled : ""}`}>
+      <div
+        className={`${styles.mobile_bar} ${scrolled ? styles.scrolled : ""}`}
+      >
         <Link href="/" className={styles.logo_wrapper}>
           <Image
             fill
